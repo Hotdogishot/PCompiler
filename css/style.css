@@ -19,19 +19,6 @@
     --mdc-theme-success: #57bb8a;
     --mdc-theme-text-secondary-on-background: rgba(0, 0, 0, 0.54);
     --mdc-ripple-color: #000;
-    --mdc-theme-text-hint-on-background: rgba(255, 255, 255, 0.38);
-    --mdc-theme-text-disabled-on-background: rgba(255, 255, 255, 0.38);
-    --mdc-theme-text-icon-on-background: rgba(255, 255, 255, 0.38);
-    --mdc-theme-text-primary-on-light: rgba(255, 255, 255, 0.87);
-    --mdc-theme-text-secondary-on-light: rgba(255, 255, 255, 0.54);
-    --mdc-theme-text-hint-on-light: rgba(255, 255, 255, 0.38);
-    --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
-    --mdc-theme-text-icon-on-light: rgba(255, 255, 255, 0.38);
-    --mdc-theme-text-primary-on-dark: black;
-    --mdc-theme-text-secondary-on-dark: rgba(0, 0, 0, 0.7);
-    --mdc-theme-text-hint-on-dark: rgba(0, 0, 0, 0.5);
-    --mdc-theme-text-disabled-on-dark: rgba(0, 0, 0, 0.5);
-    --mdc-theme-text-icon-on-dark: rgba(0, 0, 0, 0.5);
     --editor-bg: var(--mdc-theme-surface);
     --editor-color: var(--mdc-theme-on-surface);
     --line-number: #b2bec3;
@@ -67,6 +54,19 @@
     --tag: #c0392b !important;
     --mdc-theme-text-secondary-on-background: rgba(255, 255, 255, 0.54);
     --mdc-ripple-color: #fff;
+    --mdc-theme-text-hint-on-background: rgba(255, 255, 255, 0.38);
+    --mdc-theme-text-disabled-on-background: rgba(255, 255, 255, 0.38);
+    --mdc-theme-text-icon-on-background: rgba(255, 255, 255, 0.38);
+    --mdc-theme-text-primary-on-light: rgba(255, 255, 255, 0.87);
+    --mdc-theme-text-secondary-on-light: rgba(255, 255, 255, 0.54);
+    --mdc-theme-text-hint-on-light: rgba(255, 255, 255, 0.38);
+    --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
+    --mdc-theme-text-icon-on-light: rgba(255, 255, 255, 0.38);
+    --mdc-theme-text-primary-on-dark: black;
+    --mdc-theme-text-secondary-on-dark: rgba(0, 0, 0, 0.7);
+    --mdc-theme-text-hint-on-dark: rgba(0, 0, 0, 0.5);
+    --mdc-theme-text-disabled-on-dark: rgba(0, 0, 0, 0.5);
+    --mdc-theme-text-icon-on-dark: rgba(0, 0, 0, 0.5);
 }
 .mdc-theme--success {
     --mdc-theme-primary: var(--mdc-theme-success) !important;
