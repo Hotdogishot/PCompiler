@@ -1,5 +1,5 @@
 {% include '_elem/header.html' %}
-<link rel="stylesheet" href="{{ cdn('routes/css/recent.css') }}">
+<link rel="stylesheet" href="{{ cdn('routes/css/recent.css?v=' + program.version) }}">
 <div id="app">
    {% include '_elem/appbar.html' %}
    <div class="dialog center">
@@ -75,5 +75,5 @@
       </div>
    </div>
 </div>
-<script type="text/javascript" src="{{ cdn('routes/js/recent.js') }}"></script>
+<script type="text/javascript" src="{{ cdn('routes/js/recent.js?v=' + program.version) }}"></script>
 {% include '_elem/footer.html' %}

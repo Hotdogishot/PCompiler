@@ -1,5 +1,5 @@
 {% include '_elem/header.html' %}
-<link rel="stylesheet" href="{{ cdn('routes/css/editor.css') }}">
+<link rel="stylesheet" href="{{ cdn('routes/css/editor.css?v=' + program.version) }}">
 <div id="app">
    <div class="loading" style="display:none">
       <div role="progressbar" class="mdc-linear-progress" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
@@ -135,5 +135,5 @@
       </div>
    </main>
 </div>
-<script type="text/javascript" src="{{ cdn('routes/js/editor.js') }}"></script>
+<script type="text/javascript" src="{{ cdn('routes/js/editor.js?v=' + program.version) }}"></script>
 {% include '_elem/footer.html' %}

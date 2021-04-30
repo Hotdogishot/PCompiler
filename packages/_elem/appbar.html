@@ -1,7 +1,7 @@
 <header class="mdc-top-app-bar">
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-        <a href="/recent"><img src="{{ cdn('media/logo.webp') }}" width="32"></a>
+        <a href="/recent"><img src="{{ cdn('media/logo.webp?v=' + program.version) }}" width="32"></a>
         <span class="mdc-top-app-bar__title">{{ program.title }} {{ program.version }}</span>
       </section>
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
