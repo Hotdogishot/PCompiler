@@ -49,7 +49,7 @@
     --editor-color: var(--mdc-theme-on-surface) !important;
     --line-number: #7f848e !important;
     --commment: #7f848e !important;
-    --keywords: #f3b554 !important
+    --keywords: #f3b554 !important;
     --numbers: #71adde !important;
     --string: #98c379 !important;
     --tag: #c0392b !important;
