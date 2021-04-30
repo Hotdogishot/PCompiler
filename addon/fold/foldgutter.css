@@ -1,0 +1,24 @@
+.CodeMirror-foldmarker {
+  color: var(--keywords);
+  font-family: 'Material Icons';
+  line-height: .3;
+  vertical-align: -3px;
+  cursor: pointer;
+
+}
+.CodeMirror-foldgutter {
+  width: .7em;
+}
+.CodeMirror-foldgutter-open,
+.CodeMirror-foldgutter-folded {
+  font-weight: 700;
+  font-family: 'Material Icons';
+  cursor: pointer;
+}
+.CodeMirror-foldgutter-open:after {
+  content: "expand_more";
+  
+}
+.CodeMirror-foldgutter-folded:after {
+  content: "chevron_right";
+}

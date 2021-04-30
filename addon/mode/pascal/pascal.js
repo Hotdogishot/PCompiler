@@ -115,7 +115,8 @@ CodeMirror.defineMode("pascal", function() {
       return style;
     },
 
-    electricChars: "{}"
+    electricChars: "{}",
+    fold: "pascal-fold"
   };
 });
 
