@@ -1,0 +1,56 @@
+<div class="mdc-snackbar">
+  <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
+     <div class="mdc-snackbar__label" aria-atomic="false">
+        Can't connect to server. Retry in 5 seconds.
+     </div>
+     <div class="mdc-snackbar__actions" aria-atomic="true">
+        <button type="button" class="mdc-button mdc-snackbar__action">
+           <div class="mdc-button__ripple"></div>
+           <span class="mdc-button__label">Dismiss</span>
+        </button>
+     </div>
+  </div>
+</div>
+<script>
+  var snackbar;
+  function loadcomponents(){
+  // Init textfields
+  document.querySelectorAll('.mdc-text-field').forEach(item => {
+    mdc.textField.MDCTextField.attachTo(item);
+  });
+  // Add ripple effect to buttons
+  document.querySelectorAll('.mdc-button, .mdc-list-item, .mdc-icon-button').forEach(item => {
+    item = new mdc.ripple.MDCRipple(item);
+    if (item.root.className.includes('mdc-icon-button'))
+        item.unbounded = true;
+  })
+  snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snackbar'));
+  try{
+  let linearProgress = new mdc.linearProgress.MDCLinearProgress(document.querySelector('.mdc-linear-progress'));
+  linearProgress.determinate = false;
+  }catch(e) {}
+  
+  try {
+    document.querySelectorAll('[toggle]').forEach(item => {
+      new mdc.iconButton.MDCIconButtonToggle(item);
+  })}
+  catch(err){}
+  Array.prototype.remove = function() {
+  var what, a = arguments, L = a.length, ax;
+  while (L && this.length) {
+    what = a[--L];
+    while ((ax = this.indexOf(what)) !== -1) {
+        this.splice(ax, 1);
+    }
+  }
+  return this;
+  };
+  try{
+    new mdc.tabBar.MDCTabBar(document.querySelector('.mdc-tab-bar'));
+    new mdc.tabScroller.MDCTabScroller(document.querySelector('.mdc-tab-scroller'));
+  } catch(err){}
+  }
+  loadcomponents();
+</script>
+</body>
+</html>
