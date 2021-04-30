@@ -17,7 +17,7 @@ CodeMirror.registerHelper("fold", "pascal-fold", function(cm, start) {
 
   function findOpening(openCh) {
     for (var at = start.ch, pass = 0;;) {
-      var found = at <= 0 ? -1 : lineText.lastIndexOf(openCh, at - 1);
+      var found = at <= 0 ? -1 : lineText.toLowerCase().lastIndexOf(openCh, at - 1);
       if (found == -1) {
         if (pass == 1) break;
         pass = 1;
@@ -31,10 +31,10 @@ CodeMirror.registerHelper("fold", "pascal-fold", function(cm, start) {
     }
   }
 
-  var startBrace = findOpening("{"), startBracket = findOpening("Begin")
+  var startBrace = findOpening("repeat"), startBracket = findOpening("begin")
   var startToken, endToken, startCh
   if (startBrace != null && (startBracket == null || startBracket > startBrace)) {
-    startCh = startBrace; startToken = "{"; endToken = "}"
+    startCh = startBrace; startToken = "repeat"; endToken = "until"
   } else if (startBracket != null) {
     startCh = startBracket; startToken = "begin"; endToken = "end"
   } else {
