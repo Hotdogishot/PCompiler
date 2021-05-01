@@ -13,6 +13,7 @@
 </div>
 <script>
   var snackbar;
+  var tabs;
   function loadcomponents(){
   // Init textfields
   document.querySelectorAll('.mdc-text-field').forEach(item => {
@@ -46,7 +47,7 @@
   return this;
   };
   try{
-    new mdc.tabBar.MDCTabBar(document.querySelector('.mdc-tab-bar'));
+    tabs = new mdc.tabBar.MDCTabBar(document.querySelector('.mdc-tab-bar'));
     new mdc.tabScroller.MDCTabScroller(document.querySelector('.mdc-tab-scroller'));
   } catch(err){}
   }

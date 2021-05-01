@@ -21,7 +21,7 @@
          <div class="mdc-top-app-bar__row">
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
                <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Close" v-on:click="toggle_appbar(false)">close</button>
-               <span class="mdc-top-app-bar__title">[[ count_files ]] File(s)</span>
+               <span class="mdc-top-app-bar__title">[[ todelete.length ]] File(s)</span>
             </section>
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
                <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Delete" v-on:click="mass_delete()">delete</button>
@@ -29,7 +29,7 @@
          </div>
       </header>
       <div class="dialog--content">
-         <h1 class="mdc-typography--headline4">Recent Files</h1>
+         <h1 class="mdc-typography--headline4">Recent Files ([[ items.length ]])</h1>
          <div class="files">
             <h1 class="mdc-typography--headline1 notification center" v-if="items.length == 0">
                <span class="material-icons">list</span> No recent file.
@@ -58,7 +58,7 @@
                   <span class="mdc-list-item__primary-text">
                   [[ item.filename ]].pas
                   </span>
-                  <span class="mdc-list-item__secondary-text">[[ item.date ]]</span>
+                  <span class="mdc-list-item__secondary-text">[[ item.date ]] <small>([[ timeSince(item.date) ]])</small></span>
                   </span>
                   <div class="action-button">
                      <span class="material-icons mdc-icon-button" v-on:click="deleteforever(item.key)">delete_forever</span>

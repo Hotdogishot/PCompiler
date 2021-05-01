@@ -1,5 +1,6 @@
 {% include '_elem/header.html' %}
 <link rel="stylesheet" href="{{ cdn('routes/css/editor.css?v=' + program.version) }}">
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <div id="app">
    <div class="loading" style="display:none">
       <div role="progressbar" class="mdc-linear-progress" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
@@ -96,7 +97,7 @@
                      </span>
                      <span class="mdc-tab__ripple"></span>
                      </button>
-                     <button :style="recent.key == filekey ? 'opacity:0.4; pointer-events: none;' : ''" class="material-icons mdc-icon-button" v-on:click="remove(recent.key)">close</button>
+                     <button :style="recent.key == filekey ? 'opacity:0.4; pointer-events: none;' : ''" class="material-icons mdc-icon-button" v-on:click="remove_tab(recent.key)">close</button>
                   </div>
                   <button class="material-icons mdc-icon-button" v-on:click="new_tab()">add</button>
                </div>
@@ -104,15 +105,14 @@
          </div>
       </div>
       <div class="main--ide">
-         <div class="tools">
+         <div id="app--editor"><div class="tools">
             <div class="button--toggle material-icons" v-on:click="toogle_tools()">chevron_left</div>
             <div class="tools--content" style="width: 165px;">
                <button v-on:click="zoom('in')" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">zoom_in</button>
                <button v-on:click="zoom('out')" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">zoom_out</button>
-               <button v-on:click="prettier()" class="material-icons mdc-top-app-bar__action-item mdc-icon-button" disabled>auto_fix_high</button>
+               <button v-on:click="screenshot()" class="material-icons mdc-top-app-bar__action-item mdc-icon-button" >screenshot</button>
             </div>
-         </div>
-         <div id="app--editor"></div>
+         </div></div>
          <div class="output--log">
             <div class="output--topbar">
                <div class="title">
