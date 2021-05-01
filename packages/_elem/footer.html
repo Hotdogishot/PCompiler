@@ -12,46 +12,9 @@
   </div>
 </div>
 <script>
-  var snackbar;
-  var tabs;
-  function loadcomponents(){
-  // Init textfields
-  document.querySelectorAll('.mdc-text-field').forEach(item => {
-    mdc.textField.MDCTextField.attachTo(item);
-  });
-  // Add ripple effect to buttons
-  document.querySelectorAll('.mdc-button, .mdc-list-item, .mdc-icon-button').forEach(item => {
-    item = new mdc.ripple.MDCRipple(item);
-    if (item.root.className.includes('mdc-icon-button'))
-        item.unbounded = true;
-  })
-  snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snackbar'));
-  try{
-  let linearProgress = new mdc.linearProgress.MDCLinearProgress(document.querySelector('.mdc-linear-progress'));
-  linearProgress.determinate = false;
-  }catch(e) {}
-  
-  try {
-    document.querySelectorAll('[toggle]').forEach(item => {
-      new mdc.iconButton.MDCIconButtonToggle(item);
-  })}
-  catch(err){}
-  Array.prototype.remove = function() {
-  var what, a = arguments, L = a.length, ax;
-  while (L && this.length) {
-    what = a[--L];
-    while ((ax = this.indexOf(what)) !== -1) {
-        this.splice(ax, 1);
-    }
-  }
-  return this;
-  };
-  try{
-    tabs = new mdc.tabBar.MDCTabBar(document.querySelector('.mdc-tab-bar'));
-    new mdc.tabScroller.MDCTabScroller(document.querySelector('.mdc-tab-scroller'));
-  } catch(err){}
-  }
-  loadcomponents();
+var snackbar,tabs;
+function loadcomponents(){document.querySelectorAll(".mdc-text-field").forEach(function(a){mdc.textField.MDCTextField.attachTo(a)});document.querySelectorAll(".mdc-button, .mdc-list-item, .mdc-icon-button").forEach(function(a){a=new mdc.ripple.MDCRipple(a);a.root.className.includes("mdc-icon-button")&&(a.unbounded=!0)});snackbar=new mdc.snackbar.MDCSnackbar(document.querySelector(".mdc-snackbar"));try{(new mdc.linearProgress.MDCLinearProgress(document.querySelector(".mdc-linear-progress"))).determinate=!1}catch(a){}try{document.querySelectorAll("[toggle]").forEach(function(a){new mdc.iconButton.MDCIconButtonToggle(a)})}catch(a){}Array.prototype.remove=
+function(){for(var a,b=arguments,c=b.length,d;c&&this.length;)for(a=b[--c];-1!==(d=this.indexOf(a));)this.splice(d,1);return this};try{tabs=new mdc.tabBar.MDCTabBar(document.querySelector(".mdc-tab-bar")),new mdc.tabScroller.MDCTabScroller(document.querySelector(".mdc-tab-scroller"))}catch(a){}}loadcomponents();
 </script>
 </body>
 </html>
