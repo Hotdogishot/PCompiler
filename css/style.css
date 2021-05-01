@@ -199,7 +199,7 @@ body {
 }
 /* width */
 .theme--dark ::-webkit-scrollbar {
-    width: 16px;
+    width: 13px;
   }
   
   /* Track */
@@ -220,13 +220,7 @@ body {
   .theme--dark ::-webkit-scrollbar-thumb::before {
     background: #a1a1a1; 
   }
-  ::-webkit-scrollbar-button:single-button {
-    display: block;
-    border: 1px solid #424242;
-    background:#424242;
-    height: 2px;
-    width: 16px;
-  }
+ 
 
 .mdc-tooltip {
     z-index: 5555555;
