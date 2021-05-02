@@ -1,9 +1,6 @@
   {
     "version":"2.0.0.2",
-    "files":[{
-        "file":"wincrt.o",
-        "path":"workspace\\LibBin\\FP\\units"
-    },
+    "files":[
     {
         "file":"404.html",
         "path":"resources\\templates"
