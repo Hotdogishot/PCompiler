@@ -86,7 +86,7 @@
          <div class="mdc-tab-scroller">
             <div class="mdc-tab-scroller__scroll-area">
                <div class="mdc-tab-scroller__scroll-content">
-                  <div class="tabs" v-for="recent in recents" :tab-ref="recent.key">
+                  <div class="tabs" v-for="recent in recents">
                      <button class="mdc-tab" v-on:click="navigate(recent.key)" :tab-key="recent.key">
                      <span class="mdc-tab__content">
                      <span class="mdc-tab__icon material-icons" aria-hidden="true">description</span>
