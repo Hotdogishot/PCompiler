@@ -1,139 +1,142 @@
 {% include '_elem/header.html' %}
 <link rel="stylesheet" href="{{ cdn('routes/css/editor.css?v=' + program.version) }}">
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="{{ cdn('/lib/html2canvas.min.js') }}"></script>
 <div id="app">
-   <div class="loading" style="display:none">
-      <div role="progressbar" class="mdc-linear-progress" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
-         <div class="mdc-linear-progress__buffer">
-            <div class="mdc-linear-progress__buffer-bar"></div>
-            <div class="mdc-linear-progress__buffer-dots"></div>
-         </div>
-         <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
-            <span class="mdc-linear-progress__bar-inner"></span>
-         </div>
-         <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
-            <span class="mdc-linear-progress__bar-inner"></span>
-         </div>
-      </div>
-   </div>
-   <header class="mdc-top-app-bar">
-      <div class="mdc-top-app-bar__row">
-         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-            <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu" v-on:click="newTab()">keyboard_backspace</button>
-            <span class="mdc-top-app-bar__title">
-            <label class="mdc-text-field mdc-text-field--outlined  mdc-text-field--with-leading-icon">
-            <i class="material-icons mdc-text-field__icon mdc-text-field__icon--leading">drive_file_rename_outline</i>
-            <span class="mdc-notched-outline">
-            <span class="mdc-notched-outline__leading"></span>
-            <span class="mdc-notched-outline__notch">
-            <span class="mdc-floating-label">Filename</span>
-            </span>
-            <span class="mdc-notched-outline__trailing"></span>
-            </span>
-            <input class="mdc-text-field__input" value="Untitled" ref="filename" file-key='{{ key }}' v-on:change="save(this, false)">
-            </label>
-            </span>
-         </section>
-         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-            <button class="mdc-top-app-bar__action-item mdc-button mdc-button--outlined mdc-theme--success" v-on:click="builder('compile')">
-            <span class="mdc-button__ripple"></span>
-            <span class="material-icons mdc-button__icon">memory</span>
-            <span class="mdc-button__label">Compile<small>(ctrl + B)</small></span>
-            </button>
-            <button class="mdc-top-app-bar__action-item mdc-button mdc-button--outlined mdc-theme--primary" v-on:click="builder('run')">
-            <span class="mdc-button__ripple"></span>
-            <span class="material-icons mdc-button__icon">play_arrow</span>
-            <span class="mdc-button__label">Run<small>(Shift + F)</small></span>
-            </button>
-            <button class="mdc-top-app-bar__action-item mdc-button mdc-button--outlined" v-on:click="save(this, false)">
-            <span class="mdc-button__ripple"></span>
-            <span class="material-icons mdc-button__icon">save</span>
-            <span class="mdc-button__label">Save <small>(ctrl + S)</small></span>
-            </button>
-            <span style="display:contents">
-               <button class="mdc-top-app-bar__action-item mdc-button mdc-button--outlined" v-on:click="save_as_menu()">
-               <span class="mdc-button__ripple"></span>
-               <span class="material-icons mdc-button__icon">get_app</span>
-               <span class="mdc-button__label">Save as</span>
-               </button>
-               <div class="mdc-menu mdc-menu-surface mdc-top-app-bar__action-item">
-                  <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
-                     <li class="mdc-list-item" role="menuitem" v-on:click="builder('download')">
-                        <span class="mdc-list-item__ripple"></span>
-                        <span class="mdc-list-item__text">Save as .exe</span>
-                     </li>
-                     <li class="mdc-list-item" role="menuitem" v-on:click="save_as()">
-                        <span class="mdc-list-item__ripple"></span>
-                        <span class="mdc-list-item__text">Save as .pas</span>
-                     </li>
-                  </ul>
-               </div>
-            </span>
-            <button id="add-to-favorites" class="mdc-icon-button" aria-pressed="false" toggle v-on:click='toggle_theme()'>
-            {% if dark %}
-            <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">dark_mode</i>
-            <i class="material-icons mdc-icon-button__icon">light_mode</i>
-            {% else %}
-            <i class="material-icons mdc-icon-button__icon">dark_mode</i>
-            <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">light_mode</i>
-            {% endif %}
-            </button>
-         </section>
-      </div>
-   </header>
-   <main class="mdc-top-app-bar--fixed-adjust">
-      <div class="mdc-tab-bar" role="tablist">
-         <div class="mdc-tab-scroller">
-            <div class="mdc-tab-scroller__scroll-area">
-               <div class="mdc-tab-scroller__scroll-content">
-                  <div class="tabs" v-for="recent in recents">
-                     <button class="mdc-tab" v-on:click="navigate(recent.key)" :tab-key="recent.key">
-                     <span class="mdc-tab__content">
-                     <span class="mdc-tab__icon material-icons" aria-hidden="true">description</span>
-                     <span class="mdc-tab__text-label">[[ recent.filename ]].pas</span>
-                     </span>
-                     <span class="mdc-tab-indicator">
-                     <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                     </span>
-                     <span class="mdc-tab__ripple"></span>
-                     </button>
-                     <button :style="recent.key == filekey ? 'opacity:0.4; pointer-events: none;' : ''" class="material-icons mdc-icon-button" v-on:click="remove_tab(recent.key)">close</button>
-                  </div>
-                  <button class="material-icons mdc-icon-button" v-on:click="new_tab()">add</button>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="main--ide">
-         <div id="app--editor"><div class="tools">
-            <div class="button--toggle material-icons" v-on:click="toogle_tools()">chevron_left</div>
-            <div class="tools--content" style="width: 165px;">
-               <button v-on:click="zoom('in')" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">zoom_in</button>
-               <button v-on:click="zoom('out')" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">zoom_out</button>
-               <button v-on:click="screenshot()" class="material-icons mdc-top-app-bar__action-item mdc-icon-button" >screenshot</button>
-            </div>
-         </div></div>
-         <div class="output--log">
-            <div class="output--topbar">
-               <div class="title">
-                  <span class="material-icons"> list </span>
-                  Output
-               </div>
-               <div class="action">
-                  <button class="material-icons mdc-icon-button" v-on:click="output(false)">close</button>
-               </div>
-               <div style="clear:both"></div>
-            </div>
-            <div class="output--content">
-               <ul>
-                  <li v-for="error in errors">
-                     <span class="material-icons"> error </span> [[ error.error ]]
-                  </li>
-               </ul>
-            </div>
-         </div>
-      </div>
-   </main>
+<div class="loading" style="display:none">
+<div role="progressbar" class="mdc-linear-progress" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
+<div class="mdc-linear-progress__buffer">
+<div class="mdc-linear-progress__buffer-bar"></div>
+<div class="mdc-linear-progress__buffer-dots"></div>
+</div>
+<div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+<span class="mdc-linear-progress__bar-inner"></span>
+</div>
+<div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+<span class="mdc-linear-progress__bar-inner"></span>
+</div>
+</div>
+</div>
+<header class="mdc-top-app-bar">
+<div class="mdc-top-app-bar__row">
+<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+<button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu" v-on:click="newTab()">keyboard_backspace</button>
+<span class="mdc-top-app-bar__title">
+<label class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
+<i class="material-icons mdc-text-field__icon mdc-text-field__icon--leading">drive_file_rename_outline</i>
+<span class="mdc-notched-outline">
+<span class="mdc-notched-outline__leading"></span>
+<span class="mdc-notched-outline__notch">
+<span class="mdc-floating-label">Filename</span>
+</span>
+<span class="mdc-notched-outline__trailing"></span>
+</span>
+<input class="mdc-text-field__input" value="Untitled" ref="filename" file-key='{{ key }}' v-on:change="save(this, false)">
+</label>
+</span>
+</section>
+<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+<button class="mdc-top-app-bar__action-item mdc-button mdc-button--outlined mdc-theme--success" v-on:click="builder('compile')">
+<span class="mdc-button__ripple"></span>
+<span class="material-icons mdc-button__icon">memory</span>
+<span class="mdc-button__label">Compile<small>(ctrl + B)</small></span>
+</button>
+<button class="mdc-top-app-bar__action-item mdc-button mdc-button--outlined mdc-theme--primary" v-on:click="builder('run')">
+<span class="mdc-button__ripple"></span>
+<span class="material-icons mdc-button__icon">play_arrow</span>
+<span class="mdc-button__label">Run<small>(Shift + F)</small></span>
+</button>
+<button class="mdc-top-app-bar__action-item mdc-button mdc-button--outlined" v-on:click="save(this, false)">
+<span class="mdc-button__ripple"></span>
+<span class="material-icons mdc-button__icon">save</span>
+<span class="mdc-button__label">Save <small>(ctrl + S)</small></span>
+</button>
+<span style="display:contents">
+<button class="mdc-top-app-bar__action-item mdc-button mdc-button--outlined" v-on:click="save_as_menu()">
+<span class="mdc-button__ripple"></span>
+<span class="material-icons mdc-button__icon">get_app</span>
+<span class="mdc-button__label">Save as</span>
+</button>
+<div class="mdc-menu mdc-menu-surface mdc-top-app-bar__action-item">
+<ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+<li class="mdc-list-item" role="menuitem" v-on:click="builder('download')">
+<span class="mdc-list-item__ripple"></span>
+<span class="mdc-list-item__text">Save as .exe</span>
+</li>
+<li class="mdc-list-item" role="menuitem" v-on:click="save_as()">
+<span class="mdc-list-item__ripple"></span>
+<span class="mdc-list-item__text">Save as .pas</span>
+</li>
+</ul>
+</div>
+</span>
+<button id="add-to-favorites" class="mdc-icon-button" aria-pressed="false" toggle v-on:click='toggle_theme()'>
+{% if dark %}
+<i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">dark_mode</i>
+<i class="material-icons mdc-icon-button__icon">light_mode</i>
+{% else %}
+<i class="material-icons mdc-icon-button__icon">dark_mode</i>
+<i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">light_mode</i>
+{% endif %}
+</button>
+</section>
+</div>
+</header>
+<main class="mdc-top-app-bar--fixed-adjust">
+<div class="mdc-tab-bar" role="tablist">
+<div class="mdc-tab-scroller">
+<div class="mdc-tab-scroller__scroll-area">
+<div class="mdc-tab-scroller__scroll-content">
+<div class="tabs" v-for="recent in recents">
+<button class="mdc-tab" v-on:click="navigate(recent.key)" :tab-key="recent.key">
+<span class="mdc-tab__content">
+<span class="mdc-tab__icon material-icons" aria-hidden="true">description</span>
+<span class="mdc-tab__text-label">[[ recent.filename ]].pas</span>
+</span>
+<span class="mdc-tab-indicator">
+<span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+</span>
+<span class="mdc-tab__ripple"></span>
+</button>
+<button :style="recent.key == filekey ? 'opacity:0.4; pointer-events: none;' : ''" class="material-icons mdc-icon-button" v-on:click="remove_tab(recent.key)">close</button>
+</div>
+<button class="material-icons mdc-icon-button" v-on:click="new_tab()">add</button>
+</div>
+</div>
+</div>
+</div>
+<div class="main--ide">
+<div id="app--editor">
+<div class="tools">
+<div class="button--toggle material-icons" v-on:click="toogle_tools()">chevron_left</div>
+<div class="tools--content" style="width:165px">
+<button v-on:click="zoom('in')" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">zoom_in</button>
+<button v-on:click="zoom('out')" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">zoom_out</button>
+<button v-on:click="screenshot()" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">screenshot</button>
+</div>
+</div>
+</div>
+<div class="output--log">
+<div class="output--topbar">
+<div class="title">
+<span class="material-icons"> list </span>
+Output
+</div>
+<div class="action">
+<button class="material-icons mdc-icon-button" v-on:click="output(false)">close</button>
+</div>
+<div style="clear:both"></div>
+</div>
+<div class="output--content">
+<ul>
+<li v-for="error in errors">
+<span class="material-icons"> error </span> [[ error.error ]]
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
 </div>
 <script type="text/javascript" src="{{ cdn('routes/js/editor.js?v=' + program.version) }}"></script>
 {% include '_elem/footer.html' %}
