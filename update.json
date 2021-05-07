@@ -1,28 +1,4 @@
   {
     "version":"3.0.0.1",
-    "files":[
-    {
-        "file":"404.html",
-        "path":"resources\\templates"
-    },
-    {
-        "file":"editor.html",
-        "path":"resources\\templates"
-    },
-    {
-        "file":"recent.html",
-        "path":"resources\\templates"
-    },
-    {
-        "file":"_elem/header.html",
-        "path":"resources\\templates\\_elem"
-    },
-    {
-        "file":"_elem/footer.html",
-        "path":"resources\\templates\\_elem"
-    },
-    {
-        "file":"_elem/appbar.html",
-        "path":"resources\\templates\\_elem"
-    }]
+    "files":[]
   }
