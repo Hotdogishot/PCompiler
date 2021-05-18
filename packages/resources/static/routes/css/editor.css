@@ -1,0 +1,101 @@
+.mdc-top-app-bar__action-item.mdc-button {
+    margin-right: 10px;
+}
+#app {
+    width: 100%;
+    height: 100%;
+}
+.mdc-tab-bar {
+    border-bottom: 1px solid var(--mdc-theme-light);
+}
+.mdc-tab {
+    background-color: var(--mdc-theme-surface);
+}
+.tabs {
+    display: inline-flex;
+    background-color: var(--mdc-theme-surface);
+}
+[contenteditable] {
+    white-space: pre-wrap;
+    display: block;
+    outline: 0;
+    text-align: center;
+    padding: 0 6px;
+}
+[contenteditable]:focus {
+    border: 1px solid var(--mdc-theme-primary);
+}
+.mdc-menu {
+    position: relative !important;
+    top: 30px !important;
+    right: 0;
+}
+
+.window {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    height: fit-content;
+    display: none;
+    border: 1px solid var(--mdc-theme-light);
+    background-color: var(--mdc-theme-surface);
+    z-index: 555;
+    transition: display 50ms ease-out;
+    box-shadow: 0 1px 4px 1px rgb(0 0 0 / 30%);
+}
+.output--log {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    height: fit-content;
+}
+.window .window--content {
+    padding: 5px;
+    list-style-type: none;
+    font-family: consolas;
+}
+.output--log li {
+    padding: 4px 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: all 55ms ease-in-out;
+}
+.output--log li:hover {
+    background-color: var(--mdc-theme-primary);
+    color: var(--mdc-theme-on-primary) !important;
+}
+.window .window--topbar {
+    border-bottom: 1px solid var(--mdc-theme-light);
+    padding: 5px 10px;
+    cursor: move;
+}
+.window .window--topbar .title {
+    width: fit-content;
+    float: left;
+    margin: 12px 0 0 0;
+}
+.window .window--topbar .action {
+    float: right;
+    width: fit-content;
+}
+.window .material-icons {
+    vertical-align: -25% !important;
+}
+.window .output--content {
+    clear: both;
+    max-height: 200px;
+    max-width: 100%;
+    overflow: auto;
+}
+.gutter {
+    left: 0;
+    width: 21px;
+    color: var(--mdc-theme-error) !important;
+    cursor: pointer;
+}
+aside {
+    height: 100vh !important;
+    width: 57px !important;
+    margin-top: 1px !important;
+}
