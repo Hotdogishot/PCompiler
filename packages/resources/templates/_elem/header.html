@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width, initial-scale=1.0" />
+<link rel=icon type=image/png sizes=16x16 href="{{ cdn('media/favicon.png?v=' + program.version) }}">
+<title>{{ program.title }} {{ program.version[:3] }}</title>
+<link href="{{ cdn('fonts/font.css?v=' + program.version) }}" rel=stylesheet>
+<link href="{{ cdn('lib/material-components-web/material-components-web.min.css?v=' + program.version) }}" rel=stylesheet>
+<link rel=stylesheet href="{{ cdn('css/style.css?v=' + program.version) }}">
+<link rel=stylesheet href="{{ cdn('css/theme.css?v=' + program.version) }}">
+<link rel=stylesheet href="{{ cdn('css/codemirror.css?v=' + program.version) }}">
+<link rel=stylesheet href="{{ cdn('addon/hint/show-hint.css?v=' + program.version) }}">
+<link rel=stylesheet href="{{ cdn('addon/fold/foldgutter.css?v=' + program.version) }}" />
+<script type=text/javascript src="{{ cdn('lib/material-components-web/material-components-web.min.js?v=' + program.version) }}"></script>
+<script type=text/javascript src="{{ cdn('lib/FileSaver.min.js?v=' + program.version) }}"></script>
+<script type=text/javascript src="{{ cdn('lib/codemirror.js?v=' + program.version) }}"></script>
+<script type=text/javascript src="{{ cdn('lib/vue.min.js?v=' + program.version) }}"></script>
+<script type=text/javascript src="{{ cdn('lib/html2canvas.min.js?v=' + program.version) }}"></script>
+<script type=text/javascript src="{{ cdn('lib/websocket/socket.io.slim.js?v=' + program.version) }}"></script>
+<script type=text/javascript src="{{ cdn('addon/mode/pascal/pascal.js?v=' + program.version) }}"></script>
+<script type=text/javascript src="{{ cdn('addon/hint/pascal-hint.js?v=' + program.version) }}"></script>
+<script type=text/javascript src="{{ cdn('addon/hint/show-hint.js?v=' + program.version) }}"></script>
+<script type=text/javascript src="{{ cdn('addon/selection/active-line.js?v=' + program.version) }}"></script>
+<script type=text/javascript src="{{ cdn('addon/fold/foldcode.js?v=' + program.version) }}"></script>
+<script type=text/javascript src="{{ cdn('addon/fold/foldgutter.js?v=' + program.version) }}"></script>
+<script type="text/javascript"src="{{ cdn('addon/fold/pascal-fold.js?v=' + program.version) }}"></script>
+</head>
+<body class="theme--{% if dark %}dark{% else %}light{% endif%}">

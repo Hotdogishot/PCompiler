@@ -1,0 +1,16 @@
+<div class="mdc-snackbar">
+<div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
+<div class="mdc-snackbar__label" aria-atomic="false">
+Can't connect to server. Retry in 5 seconds.
+</div>
+<div class="mdc-snackbar__actions" aria-atomic="true">
+<button type="button" class="mdc-button mdc-snackbar__action">
+<div class="mdc-button__ripple"></div>
+<span class="mdc-button__label">Dismiss</span>
+</button>
+</div>
+</div>
+</div>
+<script>/*<![CDATA[*/var snackbar,tabs;function loadcomponents(){document.querySelectorAll(".mdc-text-field").forEach(function(c){mdc.textField.MDCTextField.attachTo(c)});document.querySelectorAll(".mdc-button, .mdc-list-item, .mdc-icon-button").forEach(function(c){c=new mdc.ripple.MDCRipple(c);c.root.className.includes("mdc-icon-button")&&(c.unbounded=!0)});snackbar=new mdc.snackbar.MDCSnackbar(document.querySelector(".mdc-snackbar"));try{(new mdc.linearProgress.MDCLinearProgress(document.querySelector(".mdc-linear-progress"))).determinate=!1}catch(b){}try{document.querySelectorAll("[toggle]").forEach(function(c){new mdc.iconButton.MDCIconButtonToggle(c)})}catch(b){}Array.prototype.remove=function(){for(var f,e=arguments,h=e.length,g;h&&this.length;){for(f=e[--h];-1!==(g=this.indexOf(f));){this.splice(g,1)}}return this};try{tabs=new mdc.tabBar.MDCTabBar(document.querySelector(".mdc-tab-bar")),new mdc.tabScroller.MDCTabScroller(document.querySelector(".mdc-tab-scroller"))}catch(b){}}loadcomponents();/*]]>*/</script>
+</body>
+</html>
