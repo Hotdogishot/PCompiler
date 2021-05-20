@@ -1,1 +1,75 @@
-{% include '_elem/header.html' %}<link rel="stylesheet" href="{{ cdn('routes/css/recent.css?v=' + program.version) }}"><style>#app--recent iframe{display:none;width:100%;height:100%;position:fixed;z-index:7;border:0}</style><div id="app--recent"><iframe ref="editor"></iframe>{% include '_elem/appbar.html' %}<div class="dialog center"><div class="loading" style="display:none"><div role="progressbar" class="mdc-linear-progress" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0"><div class="mdc-linear-progress__buffer"><div class="mdc-linear-progress__buffer-bar"></div><div class="mdc-linear-progress__buffer-dots"></div></div><div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar"><span class="mdc-linear-progress__bar-inner"></span></div><div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar"><span class="mdc-linear-progress__bar-inner"></span></div></div></div><header class="mdc-top-app-bar" ref="appbar" style="display:none"><div class="mdc-top-app-bar__row"><section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"><button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Close" v-on:click="toggle_appbar(false)">close</button><span class="mdc-top-app-bar__title">[[ todelete.length ]] File(s)</span></section><section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar"><button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Delete" v-on:click="mass_delete()">delete</button></section></div></header><div class="dialog--content"><h1 class="mdc-typography--headline4">Recent Files <small>([[ items.length ]])</small></h1><div class="files"><h1 class="mdc-typography--headline1 notification center" v-if="items.length == 0"><span class="material-icons">list</span> No recent file.</h1><ul class="mdc-list mdc-list--two-line" v-else><li class="mdc-list-item" v-for="item in items" :ref="item.key"><span class="mdc-list-item__ripple"></span><div class="mdc-touch-target-wrapper"><div class="mdc-checkbox mdc-checkbox--touch"><input type="checkbox" :value="item.key" class="mdc-checkbox__native-control"/><div class="mdc-checkbox__background"><svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24"><path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/></svg><div class="mdc-checkbox__mixedmark"></div></div><div class="mdc-checkbox__ripple"></div></div></div><span class="mdc-list-item__graphic material-icons mdc-theme--primary">description</span><span class="mdc-list-item__text"><span class="mdc-list-item__primary-text">[[ item.filename ]].pas</span><span class="mdc-list-item__secondary-text">[[ item.date ]] <small>([[ timeSince(item.date) ]])</small></span></span><div class="action-button"><span class="material-icons mdc-icon-button" v-on:click="deleteforever(item.key)">delete_forever</span><span class="material-icons mdc-icon-button" v-on:click="redirect(item.key)">open_in_new</span></diV></li></ul></div><button style="float:right" class="mdc-button mdc-button--outlined" v-on:click="newfile()"><span class="mdc-button__ripple"></span><span class="material-icons mdc-button__icon">add</span><span class="mdc-button__text">New file</span></button></div></div></div><script type="text/javascript" src="{{ cdn('routes/js/recent.js?v=' + program.version) }}"></script>{% include '_elem/footer.html' %}
+{% include '_elem/header.html' %}
+<link rel="stylesheet" href="{{ cdn('routes/css/recent.css?v=' + program.version) }}">
+<div id="app--recent">
+{% include '_elem/appbar.html' %}
+<div class="dialog center">
+<div class="loading" style="display:none">
+<div role="progressbar" class="mdc-linear-progress" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
+<div class="mdc-linear-progress__buffer">
+<div class="mdc-linear-progress__buffer-bar"></div>
+<div class="mdc-linear-progress__buffer-dots"></div>
+</div>
+<div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+<span class="mdc-linear-progress__bar-inner"></span>
+</div>
+<div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+<span class="mdc-linear-progress__bar-inner"></span>
+</div>
+</div>
+</div>
+<header class="mdc-top-app-bar" ref="appbar" style="display:none">
+<div class="mdc-top-app-bar__row">
+<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+<button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Close" v-on:click="toggle_appbar(false)">close</button>
+<span class="mdc-top-app-bar__title">[[ todelete.length ]] File(s)</span>
+</section>
+<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+<button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Delete" v-on:click="mass_delete()">delete</button>
+</section>
+</div>
+</header>
+<div class="dialog--content">
+<h1 class="mdc-typography--headline4">Recent Files <small>([[ items.length ]])</small></h1>
+<div class="files">
+<h1 class="mdc-typography--headline1 notification center" v-if="items.length == 0">
+<span class="material-icons">list</span> No recent file.
+</h1>
+<ul class="mdc-list mdc-list--two-line" v-else>
+<li class="mdc-list-item" v-for="item in items" :ref="item.key">
+<span class="mdc-list-item__ripple"></span>
+<div class="mdc-touch-target-wrapper">
+<div class="mdc-checkbox mdc-checkbox--touch">
+<input type="checkbox" :value="item.key" class="mdc-checkbox__native-control"/>
+<div class="mdc-checkbox__background">
+<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+<path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+</svg>
+<div class="mdc-checkbox__mixedmark"></div>
+</div>
+<div class="mdc-checkbox__ripple"></div>
+</div>
+</div>
+<span class="mdc-list-item__graphic material-icons mdc-theme--primary">description</span>
+<span class="mdc-list-item__text">
+<span class="mdc-list-item__primary-text">
+[[ item.filename ]].pas
+</span>
+<span class="mdc-list-item__secondary-text">[[ item.date ]] <small>([[ timeSince(item.date) ]])</small></span>
+</span>
+<div class="action-button">
+<span class="material-icons mdc-icon-button" v-on:click="deleteforever(item.key)">delete_forever</span>
+<span class="material-icons mdc-icon-button" v-on:click="redirect(item.key)">open_in_new</span>
+</diV>
+</li>
+</ul>
+</div>
+<button style="float:right" class="mdc-button mdc-button--outlined" v-on:click="newfile()">
+<span class="mdc-button__ripple"></span>
+<span class="material-icons mdc-button__icon">add</span>
+<span class="mdc-button__text">New file</span>
+</button>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="{{ cdn('routes/js/recent.js?v=' + program.version) }}"></script>
+{% include '_elem/footer.html' %}

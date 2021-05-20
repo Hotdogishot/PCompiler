@@ -1,5 +1,6 @@
 {% include '_elem/header.html' %}
 <link rel="stylesheet" href="{{ cdn('routes/css/editor.css?v=' + program.version) }}" />
+<style>.CodeMirror-lint-markers {width: 16px;}</style>
 <div id="app">
     <div class="loading" style="display: none;">
         <div role="progressbar" class="mdc-linear-progress" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
@@ -128,8 +129,7 @@
                     </div>
                 </div>
             </div>
-            <!-- End file tabs -->
-            
+            <!-- End file tabs -->  
             <div class="main--ide">
                 <!-- Editor -->
                 <div id="app--editor"></div>
