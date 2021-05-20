@@ -110,6 +110,11 @@
            "file":"resources\\templates\\_elem\\header.html",
            "type":"raw",
            "path":"resources\\templates\\_elem"
+        },
+        {
+           "file":"resources\\static\\lib\\html2canvas.min.js",
+           "type":"raw",
+           "path":"resources\\static\\lib"
         }
      ]
   }
