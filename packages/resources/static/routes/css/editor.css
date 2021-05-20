@@ -89,10 +89,10 @@
     overflow: auto;
 }
 .gutter {
-    left: 0;
     width: 21px;
     color: var(--mdc-theme-error) !important;
     cursor: pointer;
+    font-family: 'Material Icons';
 }
 aside {
     height: 100vh !important;
